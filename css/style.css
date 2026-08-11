@@ -39,3 +39,18 @@ padding: 20px;
 border: 1px solid #000000;
 border-radius: 40px;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 4000px;
+    gap: 10px;
+}
+input,
+textarea {
+padding: 8px;
+}
+button {
+padding: 10px;
+cursor: pointer;
+}
