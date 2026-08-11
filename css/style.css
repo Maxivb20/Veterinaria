@@ -1,0 +1,41 @@
+body {
+font-family: 'Times New Roman', Times, serif;
+margin: 0;
+padding: 0;
+}
+header {
+padding: 50px;
+}
+nav {
+padding: 20px;
+}
+nav a {
+margin-right: 10px;
+text-decoration: rgb(red, green, blue);
+}
+main {
+padding: 100px;
+}
+footer {
+padding: 10px;
+}
+.contenedor {
+display: flexbox;
+gap: 20px;
+}
+.tarjeta1 {
+padding: 20px;
+border: 1px solid #000000;
+border-radius: 40px;
+}
+
+.tarjeta2 {
+padding: 20px;
+border: 1px solid #000000;
+border-radius: 40px;
+}
+.tarjeta3 {
+padding: 20px;
+border: 1px solid #000000;
+border-radius: 40px;
+}
