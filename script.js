@@ -212,15 +212,76 @@ function initMascotas() {
     const addForm = document.querySelector("[data-pet-form]");
     const deleteAlert = document.querySelector("[data-pets-alert]");
 
-    let pets = [
-        { id: 1, nombre: "Toby", especie: "Perro", raza: "Golden Retriever", edad: "3 años", icono: "🐶" },
-        { id: 2, nombre: "Mishi", especie: "Gato", raza: "Común europeo", edad: "2 años", icono: "🐱" },
-    ];
-    let nextId = 3;
+    const STORAGE_KEY = "vetconnect_mascotas";
+
+    function cargarMascotas() {
+        try {
+            const guardado = localStorage.getItem(STORAGE_KEY);
+            if (guardado) return JSON.parse(guardado);
+        } catch (err) {
+            console.warn("No se pudo leer localStorage:", err);
+        }
+        // Datos iniciales de ejemplo (solo la primera vez, si no hay nada guardado)
+        return [
+            { id: 1, nombre: "Toby", especie: "Perro", raza: "Golden Retriever", edad: "3 años", icono: "🐶", propietario: "Juan Pérez", hora: "09:00", estado: "Confirmada" },
+            { id: 2, nombre: "Mishi", especie: "Gato", raza: "Común europeo", edad: "2 años", icono: "🐱", propietario: "Ana Soto", hora: "10:30", estado: "Pendiente" },
+        ];
+    }
+
+    function guardarMascotas() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(pets));
+        } catch (err) {
+            console.warn("No se pudo guardar en localStorage:", err);
+        }
+    }
+
+    let pets = cargarMascotas();
+    let nextId = pets.reduce((max, p) => Math.max(max, p.id), 0) + 1;
     let petToDelete = null;
+
+    const totalStat = document.querySelector("[data-stat-total]");
+    const appointmentsBody = document.querySelector("[data-appointments-body]");
+    const appointmentsEmpty = document.querySelector("[data-appointments-empty]");
+
+    function estadoClase(estado) {
+        const mapa = { "Confirmada": "confirmada", "Pendiente": "pendiente", "Cancelada": "cancelada" };
+        return mapa[estado] || "pendiente";
+    }
+
+    function renderCitas() {
+        if (!appointmentsBody) return;
+        appointmentsBody.innerHTML = "";
+
+        // Solo mascotas que tienen hora de cita asignada, ordenadas por hora
+        const citas = pets
+            .filter((p) => p.hora)
+            .slice()
+            .sort((a, b) => a.hora.localeCompare(b.hora));
+
+        if (citas.length === 0) {
+            if (appointmentsEmpty) appointmentsEmpty.style.display = "block";
+            return;
+        }
+        if (appointmentsEmpty) appointmentsEmpty.style.display = "none";
+
+        citas.forEach((pet) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${pet.hora}</td>
+                <td>${pet.nombre}</td>
+                <td>${pet.propietario || "—"}</td>
+                <td><span class="status-badge status-badge--${estadoClase(pet.estado)}">${pet.estado || "Pendiente"}</span></td>
+            `;
+            appointmentsBody.appendChild(tr);
+        });
+    }
 
     function render() {
         grid.innerHTML = "";
+
+        if (totalStat) totalStat.textContent = pets.length;
+        renderCitas();
 
         if (pets.length === 0) {
             emptyState.style.display = "block";
@@ -228,7 +289,10 @@ function initMascotas() {
         }
         emptyState.style.display = "none";
 
-        pets.forEach((pet) => {
+        // Mostramos las más recientes primero (últimas mascotas registradas)
+        const recientes = [...pets].reverse();
+
+        recientes.forEach((pet) => {
             const card = document.createElement("article");
             card.className = "pet-card";
             card.innerHTML = `
@@ -241,6 +305,8 @@ function initMascotas() {
                 </div>
                 <div class="pet-card__tags">
                     <span class="pet-tag">${pet.especie}</span>
+                    ${pet.propietario ? `<span class="pet-tag">👤 ${pet.propietario}</span>` : ""}
+                    ${pet.estado ? `<span class="status-badge status-badge--${estadoClase(pet.estado)}">${pet.estado}</span>` : ""}
                 </div>
                 <div class="pet-card__actions">
                     <button type="button" class="btn btn-outline" data-edit="${pet.id}">Editar</button>
@@ -266,6 +332,9 @@ function initMascotas() {
                 addForm.querySelector("#pet-especie").value = pet.especie;
                 addForm.querySelector("#pet-raza").value = pet.raza;
                 addForm.querySelector("#pet-edad").value = pet.edad;
+                addForm.querySelector("#pet-propietario").value = pet.propietario || "";
+                addForm.querySelector("#pet-hora").value = pet.hora || "";
+                addForm.querySelector("#pet-estado").value = pet.estado || "Pendiente";
                 document.querySelector("#modal-pet-title").textContent = "Editar mascota";
                 openModal("modal-pet");
             });
@@ -289,6 +358,9 @@ function initMascotas() {
             const especie = addForm.querySelector("#pet-especie").value;
             const raza = addForm.querySelector("#pet-raza").value.trim();
             const edad = addForm.querySelector("#pet-edad").value.trim();
+            const propietario = addForm.querySelector("#pet-propietario").value.trim();
+            const hora = addForm.querySelector("#pet-hora").value;
+            const estado = addForm.querySelector("#pet-estado").value;
 
             if (!nombre || !raza || !edad) return;
 
@@ -296,11 +368,12 @@ function initMascotas() {
 
             if (id) {
                 const pet = pets.find((p) => p.id === Number(id));
-                if (pet) Object.assign(pet, { nombre, especie, raza, edad, icono });
+                if (pet) Object.assign(pet, { nombre, especie, raza, edad, icono, propietario, hora, estado });
             } else {
-                pets.push({ id: nextId++, nombre, especie, raza, edad, icono });
+                pets.push({ id: nextId++, nombre, especie, raza, edad, icono, propietario, hora, estado });
             }
 
+            guardarMascotas();
             render();
             closeModal("modal-pet");
         });
@@ -310,6 +383,7 @@ function initMascotas() {
     if (confirmBtn) {
         confirmBtn.addEventListener("click", () => {
             pets = pets.filter((p) => p.id !== petToDelete);
+            guardarMascotas();
             closeModal("modal-confirm-delete");
             render();
             showAlert(deleteAlert, {

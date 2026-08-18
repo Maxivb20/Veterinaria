@@ -10,7 +10,1144 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+/* =========================================================
+   VetConnect — Design System
+   Mobile-first. Base = móvil, luego se agranda con min-width.
+   Paleta: crema cálido + verde clínico + coral acento
+   Tipografía: Sora (display) + Inter (texto)
+   ========================================================= */
+
+:root {
+    --bg: #FBF6EC;
+    --bg-soft: #F3EEE1;
+    --surface: #FFFFFF;
+
+    --text: #1E362C;
+    --text-soft: #52655C;
+
+    --brand: #2F6B4F;
+    --brand-dark: #1E4638;
+    --brand-soft: #E4F3E9;
+
+    --accent: #F2874D;
+    --accent-dark: #DD6B32;
+    --accent-soft: #FDE8DA;
+
+    --danger: #C6493D;
+    --danger-soft: #FBE7E4;
+
+    --border: #E7E1D2;
+
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 10px;
+
+    --shadow-sm: 0 4px 14px rgba(30, 54, 44, 0.06);
+    --shadow-md: 0 12px 30px rgba(30, 54, 44, 0.10);
+    --shadow-lg: 0 24px 60px rgba(30, 54, 44, 0.18);
+
+    --font-display: "Sora", system-ui, sans-serif;
+    --font-body: "Inter", system-ui, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--brand-dark);
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn-accent {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-accent:hover {
+    background: var(--accent-dark);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--text);
+}
+
+.btn-outline:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+}
+
+.btn-brand {
+    background: var(--brand);
+    color: #fff;
+}
+
+.btn-brand:hover {
+    background: var(--brand-dark);
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* =========================================================
+   BADGE
+   ========================================================= */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.badge::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--brand);
+}
+
+/* =========================================================
+   NAVBAR — mobile first (colapsada por defecto)
+   ========================================================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: rgba(251, 246, 236, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar__inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0.9rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--brand-dark);
+}
+
+.navbar__logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.navbar__burger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 0.4rem;
+}
+
+.navbar__burger span {
+    width: 22px;
+    height: 2px;
+    background: var(--brand-dark);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.navbar__panel {
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.5rem 1.25rem 1.25rem;
+    border-top: 1px solid var(--border);
+}
+
+.navbar__panel.is-open {
+    display: flex;
+}
+
+.navbar__links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.navbar__links a {
+    display: block;
+    padding: 0.65rem 0.9rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    color: var(--text-soft);
+}
+
+.navbar__links a:hover,
+.navbar__links a.is-active {
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+}
+
+.navbar__cta {
+    margin-top: 0.5rem;
+}
+
+@media (min-width: 800px) {
+    .navbar__burger {
+        display: none;
+    }
+
+    .navbar__panel {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        border-top: none;
+        padding: 0;
+        gap: 1.5rem;
+    }
+
+    .navbar__links {
+        flex-direction: row;
+        gap: 0.25rem;
+    }
+
+    .navbar__cta {
+        margin-top: 0;
+    }
+}
+
+/* =========================================================
+   HERO (index)
+   ========================================================= */
+
+.hero {
+    padding: 2.5rem 0 3rem;
+}
+
+.hero__grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.hero__title {
+    font-size: clamp(2.4rem, 8vw, 3.4rem);
+    line-height: 1.05;
+    margin: 1rem 0 1.25rem;
+}
+
+.hero__title span {
+    color: var(--accent);
+}
+
+.hero__text {
+    color: var(--text-soft);
+    font-size: 1.05rem;
+    max-width: 480px;
+    margin-bottom: 1.75rem;
+}
+
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.hero__art {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background:
+        radial-gradient(circle at 25% 25%, rgba(242, 135, 77, 0.55), transparent 55%),
+        radial-gradient(circle at 75% 70%, rgba(47, 107, 79, 0.65), transparent 55%),
+        linear-gradient(135deg, #16302A, #0F211C);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero__art-icon {
+    font-size: 5rem;
+    filter: drop-shadow(0 10px 25px rgba(0,0,0,0.35));
+}
+
+.hero__art-badge {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: rgba(255,255,255,0.92);
+    color: var(--brand-dark);
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 900px) {
+    .hero__grid {
+        grid-template-columns: 1.1fr 1fr;
+        align-items: center;
+    }
+}
+
+/* =========================================================
+   SECCIONES / SERVICIOS
+   ========================================================= */
+
+.section {
+    padding: 2.5rem 0;
+}
+
+.section__head {
+    margin-bottom: 2rem;
+    max-width: 560px;
+}
+
+.section__head h2 {
+    font-size: clamp(1.6rem, 4vw, 2.1rem);
+    margin-top: 0.5rem;
+}
+
+.section__eyebrow {
+    color: var(--accent-dark);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.contenedor {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+    .contenedor {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 960px) {
+    .contenedor {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.enlace-tarjeta {
+    display: block;
+    height: 100%;
+}
+
+.tarjeta {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    height: 100%;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.tarjeta:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+}
+
+.tarjeta__icono {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--brand-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.tarjeta2 .tarjeta__icono {
+    background: var(--accent-soft);
+}
+
+.tarjeta h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+}
+
+.tarjeta p {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.tarjeta__link {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--brand);
+}
+
+/* =========================================================
+   FORMULARIOS
+   ========================================================= */
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.field {
+    margin-bottom: 1.1rem;
+}
+
+.field label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin-bottom: 0.4rem;
+    color: var(--text);
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    padding: 0.8rem 0.95rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 0.95rem;
+    background: var(--bg);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field input:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(47, 107, 79, 0.15);
+    background: #fff;
+}
+
+.field textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.field-error {
+    display: none;
+    color: var(--danger);
+    font-size: 0.8rem;
+    margin-top: 0.35rem;
+}
+
+.field.has-error input,
+.field.has-error textarea {
+    border-color: var(--danger);
+}
+
+.field.has-error .field-error {
+    display: block;
+}
+
+/* =========================================================
+   ALERT
+   ========================================================= */
+
+.alert {
+    display: none;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.1rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.25rem;
+    font-size: 0.92rem;
+    border: 1px solid transparent;
+}
+
+.alert.is-visible {
+    display: flex;
+}
+
+.alert-success {
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+    border-color: rgba(47, 107, 79, 0.25);
+}
+
+.alert-error {
+    background: var(--danger-soft);
+    color: var(--danger);
+    border-color: rgba(198, 73, 61, 0.25);
+}
+
+.alert__icon {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.alert__body {
+    flex: 1;
+}
+
+.alert__title {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.15rem;
+}
+
+.alert__close {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: inherit;
+    opacity: 0.6;
+    padding: 0;
+}
+
+.alert__close:hover {
+    opacity: 1;
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 34, 28, 0.55);
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    z-index: 500;
+}
+
+.modal-overlay.is-open {
+    display: flex;
+}
+
+.modal {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: var(--shadow-lg);
+    animation: modal-in 0.2s ease;
+}
+
+@keyframes modal-in {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1.1rem;
+}
+
+.modal__head p {
+    color: var(--text-soft);
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+}
+
+.modal__close {
+    background: var(--bg-soft);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.modal__actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.modal__actions .btn {
+    flex: 1;
+}
+
+/* =========================================================
+   PÁGINA CONTACTO
+   ========================================================= */
+
+.contact-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+    .contact-grid {
+        grid-template-columns: 1.3fr 1fr;
+        align-items: start;
+    }
+}
+
+.info-list {
+    list-style: none;
+    margin: 1.1rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.info-list li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.info-list .icon {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    background: var(--brand-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.info-list strong {
+    display: block;
+    font-size: 0.92rem;
+}
+
+.info-list span {
+    color: var(--text-soft);
+    font-size: 0.88rem;
+}
+
+.hours-box {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px dashed var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+}
+
+.hours-box strong {
+    display: block;
+}
+
+/* =========================================================
+   PÁGINA LOGIN / REGISTRO
+   ========================================================= */
+
+.auth-wrap {
+    padding: 2.5rem 0 3.5rem;
+}
+
+.auth-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+@media (min-width: 980px) {
+    .auth-grid {
+        grid-template-columns: 0.9fr 1fr 1fr;
+        align-items: stretch;
+    }
+}
+
+.auth-info {
+    background: linear-gradient(160deg, var(--brand-dark), #12251E);
+    color: #fff;
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-md);
+}
+
+.auth-info h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0.75rem 0 0.6rem;
+}
+
+.auth-info p {
+    color: rgba(255,255,255,0.78);
+    font-size: 0.92rem;
+}
+
+.auth-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.75rem;
+}
+
+.auth-stats strong {
+    display: block;
+    font-size: 1.4rem;
+    font-family: var(--font-display);
+}
+
+.auth-stats span {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+}
+
+.auth-form h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.25rem;
+}
+
+.auth-form > p {
+    color: var(--text-soft);
+    font-size: 0.88rem;
+    margin-bottom: 1.25rem;
+}
+
+.auth-switch {
+    text-align: center;
+    font-size: 0.88rem;
+    color: var(--text-soft);
+    margin-top: 0.9rem;
+}
+
+.auth-switch a {
+    color: var(--brand);
+    font-weight: 700;
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0.85rem;
+    top: 38px;
+    background: none;
+    border: none;
+    font-size: 0.85rem;
+    color: var(--text-soft);
+}
+
+/* =========================================================
+   PÁGINA MASCOTAS
+   ========================================================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 720px) {
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.stat-card__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--brand-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+}
+
+.stat-card--accent .stat-card__icon {
+    background: var(--accent-soft);
+}
+
+.stat-card--danger .stat-card__icon {
+    background: var(--danger-soft);
+}
+
+.stat-card__value {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    color: var(--brand-dark);
+    line-height: 1;
+}
+
+.stat-card__label {
+    color: var(--text-soft);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.appointments-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 2.5rem;
+}
+
+.appointments-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.appointments-table-wrap {
+    overflow-x: auto;
+}
+
+.appointments-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 480px;
+}
+
+.appointments-table th {
+    text-align: left;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-soft);
+    padding: 0.7rem 0.6rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-soft);
+}
+
+.appointments-table th:first-child {
+    border-top-left-radius: var(--radius-sm);
+}
+
+.appointments-table th:last-child {
+    border-top-right-radius: var(--radius-sm);
+}
+
+.appointments-table td {
+    padding: 0.85rem 0.6rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.92rem;
+}
+
+.appointments-table tr:last-child td {
+    border-bottom: none;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.status-badge--confirmada {
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+}
+
+.status-badge--pendiente {
+    background: #FBF0D9;
+    color: #9A6A16;
+}
+
+.status-badge--cancelada {
+    background: var(--danger-soft);
+    color: var(--danger);
+}
+
+.appointments-card__footer {
+    margin-top: 1.25rem;
+}
+
+.pets-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.pets-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+    .pets-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 960px) {
+    .pets-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.pet-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.pet-card__top {
+    display: flex;
+    gap: 0.9rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.pet-card__avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.pet-card__name {
+    font-size: 1.05rem;
+}
+
+.pet-card__meta {
+    color: var(--text-soft);
+    font-size: 0.85rem;
+}
+
+.pet-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.1rem;
+}
+
+.pet-tag {
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+}
+
+.pet-card__actions {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.pet-card__actions .btn {
+    padding: 0.55rem 1rem;
+    font-size: 0.85rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-lg);
+    color: var(--text-soft);
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+    background: var(--brand-dark);
+    color: rgba(255,255,255,0.85);
+    padding: 2.5rem 0 1.5rem;
+    margin-top: 3rem;
+}
+
+.footer__grid {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 700px) {
+    .footer__grid {
+        grid-template-columns: 1.4fr 1fr 1fr;
+    }
+}
+
+.footer__brand {
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    display: block;
+}
+
+.footer__grid p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.65);
+}
+
+.footer__col h4 {
+    color: #fff;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+}
+
+.footer__col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer__col a {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.88rem;
+}
+
+.footer__col a:hover {
+    color: #fff;
+}
+
+.footer__bottom {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+}
+
+/* =========================================================
+   PÁGINA CONTACTO — header simple (por si se usa solo)
+   ========================================================= */
+
+.page-header {
+    padding: 2.25rem 0 0.5rem;
+}
+
+</style>
 </head>
 
 <body>
@@ -50,7 +1187,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" style="padding-bottom:0;">
             <div class="container">
 
                 <div class="alert" data-pets-alert style="max-width:100%;">
@@ -62,16 +1199,80 @@
                     <button type="button" class="alert__close" aria-label="Cerrar">✕</button>
                 </div>
 
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-card__icon">🐾</span>
+                        <span class="stat-card__value" data-stat-total>0</span>
+                        <span class="stat-card__label">Mascotas registradas</span>
+                    </div>
+
+                    <div class="stat-card stat-card--accent">
+                        <span class="stat-card__icon">🩺</span>
+                        <span class="stat-card__value">3</span>
+                        <span class="stat-card__label">Consultas de hoy</span>
+                    </div>
+
+                    <div class="stat-card stat-card--danger">
+                        <span class="stat-card__icon">💉</span>
+                        <span class="stat-card__value">2</span>
+                        <span class="stat-card__label">Vacunas pendientes</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-card__icon">📅</span>
+                        <span class="stat-card__value">4</span>
+                        <span class="stat-card__label">Próximas citas</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section" style="padding-top:0;">
+            <div class="container">
+
+                <div class="appointments-card">
+                    <h3>Próximas citas</h3>
+
+                    <div class="appointments-table-wrap">
+                        <table class="appointments-table">
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Mascota</th>
+                                    <th>Propietario</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody data-appointments-body></tbody>
+                        </table>
+                    </div>
+
+                    <p data-appointments-empty style="display:none; color:var(--text-soft); font-size:0.9rem; padding:1rem 0;">
+                        Aún no hay citas — se generan automáticamente al registrar una mascota con hora de cita.
+                    </p>
+
+                    <div class="appointments-card__footer">
+                        <a href="#" class="btn btn-outline">Ver calendario completo</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+
                 <div class="pets-head">
-                    <h2 style="font-size:1.3rem;">Mis mascotas registradas</h2>
-                    <button type="button" class="btn btn-accent" data-open-modal="modal-pet">+ Agregar Mascota</button>
+                    <h2 style="font-size:1.3rem;">Últimas mascotas registradas</h2>
+                    <button type="button" class="btn btn-accent" data-open-modal="modal-pet">+ Registrar Mascota</button>
                 </div>
 
                 <div class="pets-grid" data-pets-grid></div>
 
                 <div class="empty-state" data-pets-empty style="display:none;">
                     <p><strong>Aún no registras mascotas.</strong></p>
-                    <p>Toca "Agregar Mascota" para crear el primer perfil.</p>
+                    <p>Toca "Registrar Mascota" para crear el primer perfil.</p>
                 </div>
 
             </div>
@@ -126,6 +1327,25 @@
                     <input type="text" id="pet-edad" required placeholder="Ej: 3 años">
                 </div>
 
+                <div class="field">
+                    <label for="pet-propietario">Propietario</label>
+                    <input type="text" id="pet-propietario" required placeholder="Ej: Juan Pérez">
+                </div>
+
+                <div class="field">
+                    <label for="pet-hora">Hora de próxima cita</label>
+                    <input type="time" id="pet-hora">
+                </div>
+
+                <div class="field">
+                    <label for="pet-estado">Estado de la cita</label>
+                    <select id="pet-estado" style="width:100%; padding:0.8rem 0.95rem; border:1px solid var(--border); border-radius:var(--radius-sm); font-family:inherit; font-size:0.95rem; background:var(--bg);">
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Confirmada">Confirmada</option>
+                        <option value="Cancelada">Cancelada</option>
+                    </select>
+                </div>
+
                 <div class="modal__actions">
                     <button type="button" class="btn btn-outline" data-close-modal="modal-pet">Cancelar</button>
                     <button type="submit" class="btn btn-accent">Guardar</button>
@@ -152,7 +1372,407 @@
         </div>
     </div>
 
-    <script src="js/script.js"></script>
+    <script>
+/* =========================================================
+   VetConnect — script.js
+   Navbar mobile, Alert, Modal, validación de formularios
+   y CRUD simple (en memoria) para mascotas.
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+    initNavbar();
+    initAlerts();
+    initModals();
+    initContactForm();
+    initAuthForms();
+    initMascotas();
+});
+
+/* ---------- NAVBAR (hamburguesa) ---------- */
+function initNavbar() {
+    const burger = document.querySelector("[data-nav-burger]");
+    const panel = document.querySelector("[data-nav-panel]");
+    if (!burger || !panel) return;
+
+    burger.addEventListener("click", () => {
+        const isOpen = panel.classList.toggle("is-open");
+        burger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        burger.classList.toggle("is-active", isOpen);
+    });
+}
+
+/* ---------- ALERT ---------- */
+// Muestra un alert reutilizable. type: "success" | "error"
+function showAlert(alertEl, { title, message, type = "success" }) {
+    if (!alertEl) return;
+    alertEl.classList.remove("alert-success", "alert-error");
+    alertEl.classList.add(type === "error" ? "alert-error" : "alert-success");
+    alertEl.querySelector(".alert__icon").textContent = type === "error" ? "⚠️" : "✅";
+    alertEl.querySelector(".alert__title").textContent = title;
+    alertEl.querySelector(".alert__text").textContent = message;
+    alertEl.classList.add("is-visible");
+    alertEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function initAlerts() {
+    document.querySelectorAll(".alert__close").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            btn.closest(".alert").classList.remove("is-visible");
+        });
+    });
+}
+
+/* ---------- MODAL ---------- */
+function openModal(id) {
+    const overlay = document.getElementById(id);
+    if (overlay) overlay.classList.add("is-open");
+}
+
+function closeModal(id) {
+    const overlay = document.getElementById(id);
+    if (overlay) overlay.classList.remove("is-open");
+}
+
+function initModals() {
+    document.querySelectorAll("[data-open-modal]").forEach((trigger) => {
+        trigger.addEventListener("click", () => openModal(trigger.dataset.openModal));
+    });
+
+    document.querySelectorAll("[data-close-modal]").forEach((trigger) => {
+        trigger.addEventListener("click", () => closeModal(trigger.dataset.closeModal));
+    });
+
+    // Cerrar al hacer click fuera del contenido
+    document.querySelectorAll(".modal-overlay").forEach((overlay) => {
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) overlay.classList.remove("is-open");
+        });
+    });
+
+    // Cerrar con tecla Escape
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            document.querySelectorAll(".modal-overlay.is-open").forEach((o) => o.classList.remove("is-open"));
+        }
+    });
+}
+
+/* ---------- Validación genérica de un campo ---------- */
+function validateField(field, condition) {
+    field.classList.toggle("has-error", !condition);
+    return condition;
+}
+
+/* ---------- FORMULARIO DE CONTACTO ---------- */
+function initContactForm() {
+    const form = document.querySelector("[data-contact-form]");
+    if (!form) return;
+
+    const alertEl = document.querySelector("[data-contact-alert]");
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const nombre = form.querySelector("#nombre");
+        const correo = form.querySelector("#correo");
+        const mensaje = form.querySelector("#mensaje");
+
+        const okNombre = validateField(nombre.closest(".field"), nombre.value.trim().length >= 2);
+        const okCorreo = validateField(correo.closest(".field"), /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.value.trim()));
+        const okMensaje = validateField(mensaje.closest(".field"), mensaje.value.trim().length >= 10);
+
+        if (!okNombre || !okCorreo || !okMensaje) {
+            showAlert(alertEl, {
+                title: "Revisa el formulario",
+                message: "Completa todos los campos correctamente antes de enviar.",
+                type: "error",
+            });
+            return;
+        }
+
+        showAlert(alertEl, {
+            title: "¡Mensaje enviado!",
+            message: `Gracias ${nombre.value.trim()}, te responderemos a ${correo.value.trim()} muy pronto.`,
+            type: "success",
+        });
+
+        form.reset();
+    });
+}
+
+/* ---------- LOGIN / REGISTRO ---------- */
+function initAuthForms() {
+    // Mostrar / ocultar contraseña
+    document.querySelectorAll(".password-toggle").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const input = document.getElementById(btn.dataset.target);
+            if (!input) return;
+            const isPassword = input.type === "password";
+            input.type = isPassword ? "text" : "password";
+            btn.textContent = isPassword ? "Ocultar" : "Mostrar";
+        });
+    });
+
+    const loginForm = document.querySelector("[data-login-form]");
+    const loginAlert = document.querySelector("[data-login-alert]");
+
+    if (loginForm) {
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const correo = loginForm.querySelector("#login-correo");
+            const clave = loginForm.querySelector("#login-clave");
+
+            const okCorreo = validateField(correo.closest(".field"), /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.value.trim()));
+            const okClave = validateField(clave.closest(".field"), clave.value.trim().length >= 6);
+
+            if (!okCorreo || !okClave) {
+                showAlert(loginAlert, {
+                    title: "No pudimos iniciar sesión",
+                    message: "Verifica tu correo y que la contraseña tenga al menos 6 caracteres.",
+                    type: "error",
+                });
+                return;
+            }
+
+            showAlert(loginAlert, {
+                title: "¡Bienvenido de nuevo!",
+                message: "Sesión iniciada correctamente. Redirigiendo a tu panel...",
+                type: "success",
+            });
+        });
+    }
+
+    const registerForm = document.querySelector("[data-register-form]");
+    const registerAlert = document.querySelector("[data-register-alert]");
+
+    if (registerForm) {
+        registerForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const nombre = registerForm.querySelector("#reg-nombre");
+            const correo = registerForm.querySelector("#reg-correo");
+            const clave = registerForm.querySelector("#reg-clave");
+            const claveConfirm = registerForm.querySelector("#reg-clave-confirm");
+
+            const okNombre = validateField(nombre.closest(".field"), nombre.value.trim().length >= 2);
+            const okCorreo = validateField(correo.closest(".field"), /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.value.trim()));
+            const okClave = validateField(clave.closest(".field"), clave.value.trim().length >= 6);
+            const okConfirm = validateField(claveConfirm.closest(".field"), claveConfirm.value === clave.value && clave.value.trim().length >= 6);
+
+            if (!okNombre || !okCorreo || !okClave || !okConfirm) {
+                showAlert(registerAlert, {
+                    title: "Revisa tus datos",
+                    message: "Hay campos incompletos o las contraseñas no coinciden.",
+                    type: "error",
+                });
+                return;
+            }
+
+            showAlert(registerAlert, {
+                title: "¡Cuenta creada!",
+                message: `Bienvenido ${nombre.value.trim()}, ya puedes iniciar sesión.`,
+                type: "success",
+            });
+
+            registerForm.reset();
+        });
+    }
+}
+
+/* ---------- MASCOTAS (CRUD simple en memoria) ---------- */
+function initMascotas() {
+    const grid = document.querySelector("[data-pets-grid]");
+    if (!grid) return;
+
+    const emptyState = document.querySelector("[data-pets-empty]");
+    const addForm = document.querySelector("[data-pet-form]");
+    const deleteAlert = document.querySelector("[data-pets-alert]");
+
+    const STORAGE_KEY = "vetconnect_mascotas";
+
+    function cargarMascotas() {
+        try {
+            const guardado = localStorage.getItem(STORAGE_KEY);
+            if (guardado) return JSON.parse(guardado);
+        } catch (err) {
+            console.warn("No se pudo leer localStorage:", err);
+        }
+        // Datos iniciales de ejemplo (solo la primera vez, si no hay nada guardado)
+        return [
+            { id: 1, nombre: "Toby", especie: "Perro", raza: "Golden Retriever", edad: "3 años", icono: "🐶", propietario: "Juan Pérez", hora: "09:00", estado: "Confirmada" },
+            { id: 2, nombre: "Mishi", especie: "Gato", raza: "Común europeo", edad: "2 años", icono: "🐱", propietario: "Ana Soto", hora: "10:30", estado: "Pendiente" },
+        ];
+    }
+
+    function guardarMascotas() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(pets));
+        } catch (err) {
+            console.warn("No se pudo guardar en localStorage:", err);
+        }
+    }
+
+    let pets = cargarMascotas();
+    let nextId = pets.reduce((max, p) => Math.max(max, p.id), 0) + 1;
+    let petToDelete = null;
+
+    const totalStat = document.querySelector("[data-stat-total]");
+    const appointmentsBody = document.querySelector("[data-appointments-body]");
+    const appointmentsEmpty = document.querySelector("[data-appointments-empty]");
+
+    function estadoClase(estado) {
+        const mapa = { "Confirmada": "confirmada", "Pendiente": "pendiente", "Cancelada": "cancelada" };
+        return mapa[estado] || "pendiente";
+    }
+
+    function renderCitas() {
+        if (!appointmentsBody) return;
+        appointmentsBody.innerHTML = "";
+
+        // Solo mascotas que tienen hora de cita asignada, ordenadas por hora
+        const citas = pets
+            .filter((p) => p.hora)
+            .slice()
+            .sort((a, b) => a.hora.localeCompare(b.hora));
+
+        if (citas.length === 0) {
+            if (appointmentsEmpty) appointmentsEmpty.style.display = "block";
+            return;
+        }
+        if (appointmentsEmpty) appointmentsEmpty.style.display = "none";
+
+        citas.forEach((pet) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${pet.hora}</td>
+                <td>${pet.nombre}</td>
+                <td>${pet.propietario || "—"}</td>
+                <td><span class="status-badge status-badge--${estadoClase(pet.estado)}">${pet.estado || "Pendiente"}</span></td>
+            `;
+            appointmentsBody.appendChild(tr);
+        });
+    }
+
+    function render() {
+        grid.innerHTML = "";
+
+        if (totalStat) totalStat.textContent = pets.length;
+        renderCitas();
+
+        if (pets.length === 0) {
+            emptyState.style.display = "block";
+            return;
+        }
+        emptyState.style.display = "none";
+
+        // Mostramos las más recientes primero (últimas mascotas registradas)
+        const recientes = [...pets].reverse();
+
+        recientes.forEach((pet) => {
+            const card = document.createElement("article");
+            card.className = "pet-card";
+            card.innerHTML = `
+                <div class="pet-card__top">
+                    <div class="pet-card__avatar">${pet.icono}</div>
+                    <div>
+                        <h3 class="pet-card__name">${pet.nombre}</h3>
+                        <p class="pet-card__meta">${pet.raza} · ${pet.edad}</p>
+                    </div>
+                </div>
+                <div class="pet-card__tags">
+                    <span class="pet-tag">${pet.especie}</span>
+                    ${pet.propietario ? `<span class="pet-tag">👤 ${pet.propietario}</span>` : ""}
+                    ${pet.estado ? `<span class="status-badge status-badge--${estadoClase(pet.estado)}">${pet.estado}</span>` : ""}
+                </div>
+                <div class="pet-card__actions">
+                    <button type="button" class="btn btn-outline" data-edit="${pet.id}">Editar</button>
+                    <button type="button" class="btn btn-outline" data-delete="${pet.id}">Eliminar</button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+
+        grid.querySelectorAll("[data-delete]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                petToDelete = Number(btn.dataset.delete);
+                openModal("modal-confirm-delete");
+            });
+        });
+
+        grid.querySelectorAll("[data-edit]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const pet = pets.find((p) => p.id === Number(btn.dataset.edit));
+                if (!pet) return;
+                addForm.querySelector("#pet-id").value = pet.id;
+                addForm.querySelector("#pet-nombre").value = pet.nombre;
+                addForm.querySelector("#pet-especie").value = pet.especie;
+                addForm.querySelector("#pet-raza").value = pet.raza;
+                addForm.querySelector("#pet-edad").value = pet.edad;
+                addForm.querySelector("#pet-propietario").value = pet.propietario || "";
+                addForm.querySelector("#pet-hora").value = pet.hora || "";
+                addForm.querySelector("#pet-estado").value = pet.estado || "Pendiente";
+                document.querySelector("#modal-pet-title").textContent = "Editar mascota";
+                openModal("modal-pet");
+            });
+        });
+    }
+
+    // Botón "+ Agregar mascota" abre el modal en modo creación
+    document.querySelectorAll("[data-open-modal='modal-pet']").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            addForm.reset();
+            addForm.querySelector("#pet-id").value = "";
+            document.querySelector("#modal-pet-title").textContent = "Agregar mascota";
+        });
+    });
+
+    if (addForm) {
+        addForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const id = addForm.querySelector("#pet-id").value;
+            const nombre = addForm.querySelector("#pet-nombre").value.trim();
+            const especie = addForm.querySelector("#pet-especie").value;
+            const raza = addForm.querySelector("#pet-raza").value.trim();
+            const edad = addForm.querySelector("#pet-edad").value.trim();
+            const propietario = addForm.querySelector("#pet-propietario").value.trim();
+            const hora = addForm.querySelector("#pet-hora").value;
+            const estado = addForm.querySelector("#pet-estado").value;
+
+            if (!nombre || !raza || !edad) return;
+
+            const icono = especie === "Gato" ? "🐱" : especie === "Ave" ? "🐦" : especie === "Conejo" ? "🐰" : "🐶";
+
+            if (id) {
+                const pet = pets.find((p) => p.id === Number(id));
+                if (pet) Object.assign(pet, { nombre, especie, raza, edad, icono, propietario, hora, estado });
+            } else {
+                pets.push({ id: nextId++, nombre, especie, raza, edad, icono, propietario, hora, estado });
+            }
+
+            guardarMascotas();
+            render();
+            closeModal("modal-pet");
+        });
+    }
+
+    const confirmBtn = document.querySelector("[data-confirm-delete]");
+    if (confirmBtn) {
+        confirmBtn.addEventListener("click", () => {
+            pets = pets.filter((p) => p.id !== petToDelete);
+            guardarMascotas();
+            closeModal("modal-confirm-delete");
+            render();
+            showAlert(deleteAlert, {
+                title: "Mascota eliminada",
+                message: "El registro se quitó de tu lista correctamente.",
+                type: "success",
+            });
+        });
+    }
+
+    render();
+}
+
+</script>
 </body>
 
 </html>

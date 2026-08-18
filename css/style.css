@@ -341,6 +341,33 @@ button {
     justify-content: center;
 }
 
+.hero__carousel {
+    position: absolute;
+    inset: 0;
+}
+
+.hero__carousel img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: hero-fade 9s infinite;
+}
+
+.hero__carousel img:nth-child(1) { animation-delay: 0s; }
+.hero__carousel img:nth-child(2) { animation-delay: 3s; }
+.hero__carousel img:nth-child(3) { animation-delay: 6s; }
+
+@keyframes hero-fade {
+    0%   { opacity: 0; }
+    4%   { opacity: 1; }
+    30%  { opacity: 1; }
+    37%  { opacity: 0; }
+    100% { opacity: 0; }
+}
+
 .hero__art-icon {
     font-size: 5rem;
     filter: drop-shadow(0 10px 25px rgba(0,0,0,0.35));
@@ -357,6 +384,7 @@ button {
     font-weight: 700;
     font-size: 0.8rem;
     box-shadow: var(--shadow-sm);
+    z-index: 2;
 }
 
 @media (min-width: 900px) {
@@ -818,6 +846,142 @@ button {
 /* =========================================================
    PÁGINA MASCOTAS
    ========================================================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 720px) {
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.stat-card__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--brand-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+}
+
+.stat-card--accent .stat-card__icon {
+    background: var(--accent-soft);
+}
+
+.stat-card--danger .stat-card__icon {
+    background: var(--danger-soft);
+}
+
+.stat-card__value {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    color: var(--brand-dark);
+    line-height: 1;
+}
+
+.stat-card__label {
+    color: var(--text-soft);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.appointments-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 2.5rem;
+}
+
+.appointments-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.appointments-table-wrap {
+    overflow-x: auto;
+}
+
+.appointments-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 480px;
+}
+
+.appointments-table th {
+    text-align: left;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-soft);
+    padding: 0.7rem 0.6rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-soft);
+}
+
+.appointments-table th:first-child {
+    border-top-left-radius: var(--radius-sm);
+}
+
+.appointments-table th:last-child {
+    border-top-right-radius: var(--radius-sm);
+}
+
+.appointments-table td {
+    padding: 0.85rem 0.6rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.92rem;
+}
+
+.appointments-table tr:last-child td {
+    border-bottom: none;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.status-badge--confirmada {
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+}
+
+.status-badge--pendiente {
+    background: #FBF0D9;
+    color: #9A6A16;
+}
+
+.status-badge--cancelada {
+    background: var(--danger-soft);
+    color: var(--danger);
+}
+
+.appointments-card__footer {
+    margin-top: 1.25rem;
+}
 
 .pets-head {
     display: flex;
