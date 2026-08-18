@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión — VetConnect</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="navbar__inner">
+            <a href="index.html" class="navbar__brand">
+                <span class="navbar__logo">🐾</span>
+                VetConnect
+            </a>
+
+            <button type="button" class="navbar__burger" data-nav-burger aria-label="Abrir menú" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="navbar__panel" data-nav-panel>
+                <ul class="navbar__links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="auth-wrap">
+        <div class="container auth-grid">
+
+            <!-- Panel informativo -->
+            <aside class="auth-info">
+                <div>
+                    <span class="badge" style="background:rgba(255,255,255,0.12); color:#fff;">Cuidado veterinario de confianza</span>
+                    <h2>Todo el cuidado de tu mascota, en un solo lugar</h2>
+                    <p>Creamos una experiencia cálida y atenta para que el control de salud de tu mascota sea un proceso sencillo y lleno de amor.</p>
+                </div>
+
+                <div class="auth-stats">
+                    <div>
+                        <strong>15K+</strong>
+                        <span>Pacientes felices</span>
+                    </div>
+                    <div>
+                        <strong>24/7</strong>
+                        <span>Soporte médico</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Iniciar sesión -->
+            <section class="card auth-form">
+                <h3>Iniciar Sesión</h3>
+                <p>Accede a tu historial y citas programadas.</p>
+
+                <div class="alert" data-login-alert>
+                    <span class="alert__icon">✅</span>
+                    <div class="alert__body">
+                        <span class="alert__title">Título</span>
+                        <span class="alert__text">Mensaje</span>
+                    </div>
+                    <button type="button" class="alert__close" aria-label="Cerrar">✕</button>
+                </div>
+
+                <form data-login-form novalidate>
+                    <div class="field">
+                        <label for="login-correo">Correo electrónico</label>
+                        <input type="email" id="login-correo" placeholder="ejemplo@mascota.com">
+                        <span class="field-error">Ingresa un correo válido.</span>
+                    </div>
+
+                    <div class="field password-field">
+                        <label for="login-clave">Contraseña</label>
+                        <input type="password" id="login-clave" placeholder="••••••••">
+                        <button type="button" class="password-toggle" data-target="login-clave">Mostrar</button>
+                        <span class="field-error">Mínimo 6 caracteres.</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-accent btn-block">Entrar al Portal</button>
+                </form>
+
+                <p class="auth-switch">¿No tienes cuenta? <a href="#registro-card">Regístrate abajo</a></p>
+            </section>
+
+            <!-- Crear cuenta -->
+            <section class="card auth-form" id="registro-card">
+                <h3>Crear Cuenta</h3>
+                <p>Regístrate y agenda la primera cita de tu mascota.</p>
+
+                <div class="alert" data-register-alert>
+                    <span class="alert__icon">✅</span>
+                    <div class="alert__body">
+                        <span class="alert__title">Título</span>
+                        <span class="alert__text">Mensaje</span>
+                    </div>
+                    <button type="button" class="alert__close" aria-label="Cerrar">✕</button>
+                </div>
+
+                <form data-register-form novalidate>
+                    <div class="field">
+                        <label for="reg-nombre">Nombre completo</label>
+                        <input type="text" id="reg-nombre" placeholder="Juan Pérez">
+                        <span class="field-error">Escribe al menos 2 caracteres.</span>
+                    </div>
+
+                    <div class="field">
+                        <label for="reg-correo">Correo electrónico</label>
+                        <input type="email" id="reg-correo" placeholder="juan@mascota.com">
+                        <span class="field-error">Ingresa un correo válido.</span>
+                    </div>
+
+                    <div class="field password-field">
+                        <label for="reg-clave">Contraseña</label>
+                        <input type="password" id="reg-clave" placeholder="Crear contraseña">
+                        <button type="button" class="password-toggle" data-target="reg-clave">Mostrar</button>
+                        <span class="field-error">Mínimo 6 caracteres.</span>
+                    </div>
+
+                    <div class="field password-field">
+                        <label for="reg-clave-confirm">Confirmar contraseña</label>
+                        <input type="password" id="reg-clave-confirm" placeholder="Repetir contraseña">
+                        <button type="button" class="password-toggle" data-target="reg-clave-confirm">Mostrar</button>
+                        <span class="field-error">Las contraseñas no coinciden.</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-brand btn-block">Crear Mi Cuenta</button>
+                </form>
+
+                <p class="auth-switch">¿Ya tienes cuenta? <a href="#top">Inicia sesión arriba</a></p>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer__bottom" style="border-top:none; padding-top:0;">
+                <span>© 2026 VetConnect. Hecho con amor para las mascotas del mundo.</span>
+                <span>
+                    <a href="index.html" style="margin-right:1rem;">Política de Privacidad</a>
+                    <a href="index.html">Términos de Servicio</a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

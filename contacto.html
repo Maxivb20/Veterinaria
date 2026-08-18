@@ -1,29 +1,178 @@
 <!DOCTYPE html>
-    <html lang="es">
-        <head>
+<html lang="es">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Contacto - VetConnect</title>
+    <title>Contacto — VetConnect</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
-        </head>
-            <body>
-                <header>
-                    <h1>Contacto</h1>
-                </header>
-        <nav>
-    <a href="index.html">Inicio</a>
-    <a href="contacto.html">Contacto</a>
-        </nav>
-            <main>
-                <form>
-                    <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre">
-                    <label for="correo">Correo</label>
-                    <input type="email" id="correo" name="correo">
-                    <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" name="mensaje"></textarea>
-                    <button type="submit">Enviar</button>
-                </form>
-            </main>
-            </body>
-    </html>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="navbar__inner">
+            <a href="index.html" class="navbar__brand">
+                <span class="navbar__logo">🐾</span>
+                VetConnect
+            </a>
+
+            <button type="button" class="navbar__burger" data-nav-burger aria-label="Abrir menú" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="navbar__panel" data-nav-panel>
+                <ul class="navbar__links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="contacto.html" class="is-active">Contacto</a></li>
+                </ul>
+                <a href="login.html" class="btn btn-outline navbar__cta">Iniciar Sesión</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="section" style="padding-bottom: 0;">
+            <div class="container" style="text-align:center; max-width:640px;">
+                <span class="badge">Estamos para ayudarte</span>
+                <h1 style="font-family: var(--font-display); font-size: clamp(2rem, 6vw, 2.6rem); margin: 1rem 0 0.75rem;">Contáctanos</h1>
+                <p style="color: var(--text-soft);">
+                    ¿Tienes dudas sobre nuestros servicios, necesitas agendar una consulta especial
+                    o simplemente quieres saludarnos? Escríbenos y te responderemos con todo el cariño
+                    que tu mascota merece.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container contact-grid">
+
+                <div class="card">
+                    <h3 style="margin-bottom:1.25rem;">Envíanos un mensaje</h3>
+
+                    <div class="alert" data-contact-alert>
+                        <span class="alert__icon">✅</span>
+                        <div class="alert__body">
+                            <span class="alert__title">Título</span>
+                            <span class="alert__text">Mensaje</span>
+                        </div>
+                        <button type="button" class="alert__close" aria-label="Cerrar">✕</button>
+                    </div>
+
+                    <form data-contact-form novalidate>
+                        <div class="field">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo">
+                            <span class="field-error">Escribe al menos 2 caracteres.</span>
+                        </div>
+
+                        <div class="field">
+                            <label for="correo">Correo Electrónico</label>
+                            <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com">
+                            <span class="field-error">Ingresa un correo válido.</span>
+                        </div>
+
+                        <div class="field">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos cómo podemos ayudarte a ti y a tu compañero peludo..."></textarea>
+                            <span class="field-error">Cuéntanos un poco más (mín. 10 caracteres).</span>
+                        </div>
+
+                        <button type="submit" class="btn btn-accent btn-block">Enviar Mensaje →</button>
+                    </form>
+                </div>
+
+                <div>
+                    <div class="card" style="margin-bottom:1.25rem;">
+                        <h3>Información de Contacto</h3>
+                        <p style="color:var(--text-soft); font-size:0.9rem; margin-top:0.35rem;">
+                            También puedes visitarnos directamente o comunicarte por nuestros canales oficiales.
+                        </p>
+
+                        <ul class="info-list">
+                            <li>
+                                <span class="icon">📞</span>
+                                <div>
+                                    <strong>Teléfono</strong>
+                                    <span>+56 9 1234 5678</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="icon">✉️</span>
+                                <div>
+                                    <strong>Correo</strong>
+                                    <span>hola@vetconnect.com</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="icon">📍</span>
+                                <div>
+                                    <strong>Ubicación</strong>
+                                    <span>Av. 21 de Mayo 850, Tocopilla</span>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="hours-box">
+                            <div>
+                                <strong>Lunes a Viernes</strong>
+                                <span>09:00 - 19:30</span>
+                            </div>
+                            <div>
+                                <strong>Sábados</strong>
+                                <span>10:00 - 15:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="display:flex; justify-content:space-between; gap:1rem;">
+                        <span style="font-weight:700; color:var(--danger);">Urgencias 24/7</span>
+                        <span style="font-weight:700; color:var(--brand);">Solo llamadas</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer__grid">
+                <div>
+                    <span class="footer__brand">VetConnect</span>
+                    <p>Cuidamos a quienes más quieres con profesionalismo, calidez y la dedicación que se merecen.</p>
+                </div>
+                <div class="footer__col">
+                    <h4>Clínica</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="mascotas.html">Mascotas</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col">
+                    <h4>Cuenta</h4>
+                    <ul>
+                        <li><a href="login.html">Iniciar sesión</a></li>
+                        <li><a href="login.html">Crear cuenta</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <span>© 2026 VetConnect. Todos los derechos reservados.</span>
+                <span>Privacidad &amp; Términos de Servicio</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

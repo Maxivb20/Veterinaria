@@ -4,59 +4,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mascotas - VetConnect</title>
+    <title>Mis Mascotas — VetConnect</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <header>
-        <h1>Mascotas</h1>
+    <header class="navbar">
+        <div class="navbar__inner">
+            <a href="index.html" class="navbar__brand">
+                <span class="navbar__logo">🐾</span>
+                VetConnect
+            </a>
 
-        <p>
-            Busca la información de tu mascota utilizando su número de atención.
-        </p>
+            <button type="button" class="navbar__burger" data-nav-burger aria-label="Abrir menú" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="navbar__panel" data-nav-panel>
+                <ul class="navbar__links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+                <a href="login.html" class="btn btn-outline navbar__cta">Iniciar Sesión</a>
+            </div>
+        </div>
     </header>
-
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="contacto.html">Contacto</a>
-    </nav>
 
     <main>
 
-        <section>
+        <section class="section" style="padding-bottom:0.5rem;">
+            <div class="container" style="text-align:center; max-width:640px;">
+                <span class="badge">Portal de gestión de mascotas</span>
+                <h1 style="font-family: var(--font-display); font-size: clamp(2rem, 6vw, 2.6rem); margin: 1rem 0 0.75rem;">
+                    Bienvenido a tu Espacio Mascota
+                </h1>
+                <p style="color: var(--text-soft);">
+                    Registra y gestiona el historial médico, vacunas y citas de tus mejores amigos en un solo lugar.
+                </p>
+            </div>
+        </section>
 
-            <h2>Buscar mascota</h2>
+        <section class="section">
+            <div class="container">
 
-            <form>
+                <div class="alert" data-pets-alert style="max-width:100%;">
+                    <span class="alert__icon">✅</span>
+                    <div class="alert__body">
+                        <span class="alert__title">Título</span>
+                        <span class="alert__text">Mensaje</span>
+                    </div>
+                    <button type="button" class="alert__close" aria-label="Cerrar">✕</button>
+                </div>
 
-                <label for="numeroAtencion">
-                    Número de atención
-                </label>
+                <div class="pets-head">
+                    <h2 style="font-size:1.3rem;">Mis mascotas registradas</h2>
+                    <button type="button" class="btn btn-accent" data-open-modal="modal-pet">+ Agregar Mascota</button>
+                </div>
 
-                <input
-                    type="text"
-                    id="numeroAtencion"
-                    name="numeroAtencion"
-                    placeholder="Ej: 10025"
-                >
+                <div class="pets-grid" data-pets-grid></div>
 
-                <button type="submit">
-                    Buscar mascota
-                </button>
+                <div class="empty-state" data-pets-empty style="display:none;">
+                    <p><strong>Aún no registras mascotas.</strong></p>
+                    <p>Toca "Agregar Mascota" para crear el primer perfil.</p>
+                </div>
 
-            </form>
-
+            </div>
         </section>
 
     </main>
 
     <footer>
-        <p>Desarrollo Web y Móvil 2026</p>
+        <div class="container">
+            <div class="footer__bottom" style="border-top:none; padding-top:0;">
+                <span>© 2026 VetConnect. Hecho con amor para las mascotas del mundo.</span>
+            </div>
+        </div>
     </footer>
 
+    <!-- Modal: agregar / editar mascota -->
+    <div class="modal-overlay" id="modal-pet">
+        <div class="modal">
+            <div class="modal__head">
+                <div>
+                    <h3 id="modal-pet-title">Agregar mascota</h3>
+                    <p>Completa los datos de tu compañero peludo.</p>
+                </div>
+                <button type="button" class="modal__close" data-close-modal="modal-pet" aria-label="Cerrar">✕</button>
+            </div>
+
+            <form data-pet-form novalidate>
+                <input type="hidden" id="pet-id">
+
+                <div class="field">
+                    <label for="pet-nombre">Nombre</label>
+                    <input type="text" id="pet-nombre" required placeholder="Ej: Toby">
+                </div>
+
+                <div class="field">
+                    <label for="pet-especie">Especie</label>
+                    <select id="pet-especie" style="width:100%; padding:0.8rem 0.95rem; border:1px solid var(--border); border-radius:var(--radius-sm); font-family:inherit; font-size:0.95rem; background:var(--bg);">
+                        <option value="Perro">Perro</option>
+                        <option value="Gato">Gato</option>
+                        <option value="Ave">Ave</option>
+                        <option value="Conejo">Conejo</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="pet-raza">Raza</label>
+                    <input type="text" id="pet-raza" required placeholder="Ej: Golden Retriever">
+                </div>
+
+                <div class="field">
+                    <label for="pet-edad">Edad</label>
+                    <input type="text" id="pet-edad" required placeholder="Ej: 3 años">
+                </div>
+
+                <div class="modal__actions">
+                    <button type="button" class="btn btn-outline" data-close-modal="modal-pet">Cancelar</button>
+                    <button type="submit" class="btn btn-accent">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: confirmar eliminación (Alert de confirmación) -->
+    <div class="modal-overlay" id="modal-confirm-delete">
+        <div class="modal">
+            <div class="modal__head">
+                <div>
+                    <h3>¿Eliminar mascota?</h3>
+                    <p>Esta acción no se puede deshacer.</p>
+                </div>
+                <button type="button" class="modal__close" data-close-modal="modal-confirm-delete" aria-label="Cerrar">✕</button>
+            </div>
+
+            <div class="modal__actions">
+                <button type="button" class="btn btn-outline" data-close-modal="modal-confirm-delete">Cancelar</button>
+                <button type="button" class="btn btn-accent" data-confirm-delete>Sí, eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
 
 </html>

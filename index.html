@@ -4,68 +4,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VetConnect</title>
+    <title>VetConnect — Clínica veterinaria inteligente</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <header>
-        <h1>VetConnect</h1>
+    <header class="navbar">
+        <div class="navbar__inner">
+            <a href="index.html" class="navbar__brand">
+                <span class="navbar__logo">🐾</span>
+                VetConnect
+            </a>
 
-        <p>
-            VetConnect — el cuidado que tu mascota merece.
-            Veterinarios expertos, tecnología avanzada y trato cercano
-            en cada visita. Agenda tu cita hoy y dale a tu mejor amigo
-            el cuidado que se merece.
-        </p>
+            <button type="button" class="navbar__burger" data-nav-burger aria-label="Abrir menú" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="navbar__panel" data-nav-panel>
+                <ul class="navbar__links">
+                    <li><a href="index.html" class="is-active">Inicio</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+                <a href="login.html" class="btn btn-outline navbar__cta">Iniciar Sesión</a>
+            </div>
+        </div>
     </header>
-
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="contacto.html">Contacto</a>
-    </nav>
 
     <main>
 
-        <section>
-
-            <h2>Servicios</h2>
-
-            <div class="contenedor">
-
-                <a href="mascotas.html" class="enlace-tarjeta">
-                    <div class="tarjeta1">
-                        <h3>Mascotas</h3>
-                        <p>Administra las mascotas registradas.</p>
+        <section class="hero">
+            <div class="container hero__grid">
+                <div>
+                    <span class="badge">Clínica inteligente 24/7</span>
+                    <h1 class="hero__title">Vet<span>Connect</span></h1>
+                    <p class="hero__text">
+                        Conectamos tecnología de punta y amor incondicional por tus mascotas.
+                        Veterinarios expertos, seguimiento digital y trato cercano en cada visita.
+                    </p>
+                    <div class="hero__actions">
+                        <a href="contacto.html" class="btn btn-accent">Agendar Consulta →</a>
+                        <a href="mascotas.html" class="btn btn-outline">Conocer Más</a>
                     </div>
-                </a>
+                </div>
 
-                <a href="consultas.html" class="enlace-tarjeta">
-                    <div class="tarjeta2">
-                        <h3>Consultas</h3>
-                        <p>Gestiona las consultas veterinarias.</p>
-                    </div>
-                </a>
-
-                <a href="vacunas.html" class="enlace-tarjeta">
-                    <div class="tarjeta3">
-                        <h3>Vacunas</h3>
-                        <p>Consulta el historial de vacunación.</p>
-                    </div>
-                </a>
-
+                <div class="hero__art">
+                    <span class="hero__art-icon">🐶🐱</span>
+                    <span class="hero__art-badge">✨ Tecnología + cuidado real</span>
+                </div>
             </div>
+        </section>
 
+        <section class="section">
+            <div class="container">
+
+                <div class="section__head">
+                    <span class="section__eyebrow">Servicios digitales</span>
+                    <h2>Ecosistema de cuidado inteligente</h2>
+                </div>
+
+                <div class="contenedor">
+
+                    <a href="mascotas.html" class="enlace-tarjeta">
+                        <div class="tarjeta tarjeta1">
+                            <span class="tarjeta__icono">🐾</span>
+                            <h3>Mascotas</h3>
+                            <p>Administra los perfiles y el historial de tus mascotas registradas.</p>
+                            <span class="tarjeta__link">Acceder al sistema →</span>
+                        </div>
+                    </a>
+
+                    <a href="consultas.html" class="enlace-tarjeta">
+                        <div class="tarjeta tarjeta2">
+                            <span class="tarjeta__icono">🩺</span>
+                            <h3>Consultas</h3>
+                            <p>Gestiona tus consultas veterinarias, presenciales o virtuales.</p>
+                            <span class="tarjeta__link">Acceder al sistema →</span>
+                        </div>
+                    </a>
+
+                    <a href="vacunas.html" class="enlace-tarjeta">
+                        <div class="tarjeta tarjeta3">
+                            <span class="tarjeta__icono">💉</span>
+                            <h3>Vacunas</h3>
+                            <p>Consulta el calendario y el historial de vacunación al día.</p>
+                            <span class="tarjeta__link">Acceder al sistema →</span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
         </section>
 
     </main>
 
     <footer>
-        <p>Desarrollo Web y Móvil 2026</p>
+        <div class="container">
+            <div class="footer__grid">
+                <div>
+                    <span class="footer__brand">VetConnect</span>
+                    <p>Cuidamos a quienes más quieres con profesionalismo, calidez y la dedicación que se merecen. Tu clínica veterinaria de confianza.</p>
+                </div>
+                <div class="footer__col">
+                    <h4>Clínica</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="mascotas.html">Mascotas</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col">
+                    <h4>Cuenta</h4>
+                    <ul>
+                        <li><a href="login.html">Iniciar sesión</a></li>
+                        <li><a href="login.html">Crear cuenta</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <span>© 2026 VetConnect. Desarrollo Web y Móvil 2026.</span>
+                <span>Hecho con amor para las mascotas del mundo.</span>
+            </div>
+        </div>
     </footer>
 
+    <script src="js/script.js"></script>
 </body>
 
 </html>
